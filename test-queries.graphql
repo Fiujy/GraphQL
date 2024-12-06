@@ -1,0 +1,70 @@
+# Obtenir un utilisateur par ID
+query GetUser {
+  user(id: "0") {
+    id
+    name
+    email
+    posts {
+      title
+      content
+    }
+    followers {
+      name
+    }
+    following {
+      name
+    }
+  }
+}
+
+# Ajouter un nouvel utilisateur
+mutation AddUser {
+  addUser(name: "Charlie", email: "charlie@example.com") {
+    id
+    name
+    email
+  }
+}
+
+# Ajouter un post
+mutation AddPost {
+  addPost(title: "New Post", content: "This is a new post", authorId: "0") {
+    id
+    title
+    author {
+      name
+    }
+  }
+}
+
+# Liker un post
+mutation LikePost {
+  likePost(postId: "0", userId: "1") {
+    id
+    title
+    likes {
+      name
+    }
+  }
+}
+
+# Ajouter un commentaire à un post
+mutation AddComment {
+  addComment(postId: "0", userId: "1", content: "Great post!") {
+    id
+    content
+    author {
+      name
+    }
+  }
+}
+
+# Suivre un utilisateur
+mutation FollowUser {
+  followUser(followerId: "0", followingId: "1") {
+    name
+    following {
+      name
+    }
+  }
+}
